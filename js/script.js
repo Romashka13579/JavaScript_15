@@ -2,23 +2,36 @@ var mainBlock1 = document.querySelector('.main-block-1');
 var square = document.querySelector('.square');
 
 var ispressed = false;
+var x1;
+var y1;
 
 mainBlock1.addEventListener('mousedown', (e) => {
     ispressed = true;
-    var x1 = e.clientX;
-    var y1 = e.clientY;
+    x1 = e.clientX;
+    y1 = e.clientY;
     square.style.top = "" + (y1) + "px";
     square.style.left = "" + (x1) + "px";
-    mainBlock1.addEventListener('mousemove', (e) => {
-        if (ispressed == true) {
-            var x2 = e.clientX;
-            var y2 = e.clientY;
-            square.style.display = "block";
+});
+
+mainBlock1.addEventListener('mousemove', (e) => {
+    if (ispressed == true) {
+        var x2 = e.clientX;
+        var y2 = e.clientY;
+        square.style.display = "block";
+        if(x2>=x1){
             square.style.width = "" + (x2 - x1) + "px";
-            square.style.height = "" + (y2 - y1) + "px";
         }
-    });
-    square.className = "square1";
+        else if(x2<x1){
+            square.style.left = "" + ((x1) - (x1 - x2)) + "px";
+            square.style.width = "" + (x1 - x2) + "px";
+        }
+
+        if(y2>=y1){square.style.height = "" + (y2 - y1) + "px";}
+        else if(y2<y1){
+            square.style.top = "" + ((y1) - (y1 - y2)) + "px";
+            square.style.height = "" + (y1 - y2) + "px";
+        }
+    }
 });
 
 mainBlock1.addEventListener('mouseup', (e) => {
@@ -27,4 +40,8 @@ mainBlock1.addEventListener('mouseup', (e) => {
     mainBlock1.append(squarecopy);
     ispressed = false;
     square.style.display = "none";
+    square.style.top = "0px";
+    square.style.left = "0px";
+    square.style.width = "0px";
+    square.style.height = "0px";
 });
