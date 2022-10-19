@@ -6,12 +6,36 @@ body{
     width: 100%;
     height: 100vh;
     display: grid;
+    grid-template-rows: 80px 1fr;
+}
+
+.header{
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    padding: 0px 50px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+.color{
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    background: black;
+    border-radius: 50%;
+    border: 3px solid rgb(70, 70, 70);
+    box-sizing: border-box;
+}
+
+.main-part{
+    display: grid;
     grid-template-columns: 1fr 200px;
 }
 
 .main-block-1{
-    margin: 50px;
+    margin: 0px 30px 30px 30px;
     border: 2px solid rgb(70, 70, 70);
+    background: rgb(202, 202, 202);
 }
 
 .main-block-2{

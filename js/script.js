@@ -1,3 +1,19 @@
+var header = document.querySelector('.header');
+var color = document.querySelector('.color');
+var colorArray = ['blue', 'yellow', 'green', 'lightblue', 'orange', 'purple', 'pink', 'red', 'white'];
+for (let k = 0; k < colorArray.length; k++) {
+    var colorclone = color.cloneNode(true);
+    colorclone.style.background = colorArray[k];
+    header.append(colorclone);
+}
+
+var colors = document.querySelectorAll('.color');
+colors.forEach(color => {
+    color.addEventListener('click', () => {
+        square.style.borderColor = color.style.background;
+    });
+});
+
 var mainBlock1 = document.querySelector('.main-block-1');
 var square = document.querySelector('.square');
 
