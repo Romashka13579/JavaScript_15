@@ -66,4 +66,4 @@ mainBlock1.addEventListener('mouseup', (e) => {
 });
 
 var mainBlock2 = document.querySelector('.main-block-2');
-var block2 = document.querySelector('.block-2');
+var blocks = document.querySelector('.block');
