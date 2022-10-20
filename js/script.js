@@ -1,10 +1,11 @@
+var headerColors = document.querySelector('.header-colors');
 var header = document.querySelector('.header');
 var color = document.querySelector('.color');
 var colorArray = ['blue', 'yellow', 'green', 'lightblue', 'orange', 'purple', 'pink', 'red', 'white'];
 for (let k = 0; k < colorArray.length; k++) {
     var colorclone = color.cloneNode(true);
     colorclone.style.background = colorArray[k];
-    header.append(colorclone);
+    headerColors.append(colorclone);
 }
 
 var colors = document.querySelectorAll('.color');
@@ -52,6 +53,7 @@ mainBlock1.addEventListener('mousemove', (e) => {
 
 mainBlock1.addEventListener('mouseup', (e) => {
     var mainBlock1 = document.querySelector('.main-block-1');
+    square.style.zIndex = "1";
     var squarecopy = square.cloneNode(true);
     mainBlock1.append(squarecopy);
     ispressed = false;
@@ -60,4 +62,8 @@ mainBlock1.addEventListener('mouseup', (e) => {
     square.style.left = "0px";
     square.style.width = "0px";
     square.style.height = "0px";
+    square.style.zIndex = "2";
 });
+
+var mainBlock2 = document.querySelector('.main-block-2');
+var block2 = document.querySelector('.block-2');
