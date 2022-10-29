@@ -65,5 +65,17 @@ mainBlock1.addEventListener('mouseup', (e) => {
     square.style.zIndex = "2";
 });
 
-var mainBlock2 = document.querySelector('.main-block-2');
-var blocks = document.querySelector('.block');
+var squared = document.querySelector('.squared');
+var circled = document.querySelector('.circled');
+var lined = document.querySelector('.lined');
+console.log(circled);
+
+squared.addEventListener('click', () => {
+    square.className = "square";
+});
+circled.addEventListener('click', () => {
+    square.className = "circle";
+});
+lined.addEventListener('click', () => {
+    square.className = "line";
+});
