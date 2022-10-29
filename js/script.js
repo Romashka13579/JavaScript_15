@@ -34,7 +34,7 @@ for (let k = 0; k < sizes.length; k++) {
 
 
 
-
+var blocksArray = new Array;
 var mainBlock1 = document.querySelector('.main-block-1');
 var square = document.querySelector('.square');
 
@@ -93,6 +93,8 @@ mainBlock1.addEventListener('mouseup', (e) => {
     square.style.zIndex = "1";
     var squarecopy = square.cloneNode(true);
     mainBlock1.append(squarecopy);
+    blocksArray.push(squarecopy);
+    console.log(blocksArray);
     ispressed = false;
     square.style.display = "none";
     square.style.top = "0px";
@@ -118,4 +120,11 @@ circled.addEventListener('click', () => {
 lined.addEventListener('click', () => {
     square.className = "line";
     square.style.background = "black";
+});
+
+document.addEventListener('keypress', (e) => {
+    if(e.key === 'z'){
+        var theRemovedElement = blocksArray.pop();
+        mainBlock1.removeChild(theRemovedElement);
+    }
 });
