@@ -39,19 +39,22 @@ var mainBlock1 = document.querySelector('.main-block-1');
 var square = document.querySelector('.square');
 
 var ispressed = false;
+var iftext = false;
 var x1;
 var y1;
 
 mainBlock1.addEventListener('mousedown', (e) => {
-    ispressed = true;
-    x1 = e.clientX;
-    y1 = e.clientY;
-    square.style.top = "" + (y1) + "px";
-    square.style.left = "" + (x1) + "px";
+    if(iftext == false){
+        ispressed = true;
+        x1 = e.clientX;
+        y1 = e.clientY;
+        square.style.top = "" + (y1) + "px";
+        square.style.left = "" + (x1) + "px";
+    }
 });
 
 mainBlock1.addEventListener('mousemove', (e) => {
-    if (ispressed == true) {
+    if (ispressed == true && iftext == false) {
         var x2 = e.clientX;
         var y2 = e.clientY;
         square.style.display = "block";
@@ -89,42 +92,87 @@ mainBlock1.addEventListener('mousemove', (e) => {
 });
 
 mainBlock1.addEventListener('mouseup', (e) => {
-    var mainBlock1 = document.querySelector('.main-block-1');
-    square.style.zIndex = "1";
-    var squarecopy = square.cloneNode(true);
-    mainBlock1.append(squarecopy);
-    blocksArray.push(squarecopy);
-    console.log(blocksArray);
-    ispressed = false;
-    square.style.display = "none";
-    square.style.top = "0px";
-    square.style.left = "0px";
-    square.style.width = "0px";
-    square.style.height = "0px";
-    square.style.zIndex = "2";
+    if(iftext == false){
+        var mainBlock1 = document.querySelector('.main-block-1');
+        square.style.zIndex = "1";
+        var squarecopy = square.cloneNode(true);
+        mainBlock1.append(squarecopy);
+        blocksArray.push(squarecopy);
+        console.log(blocksArray);
+        ispressed = false;
+        square.style.display = "none";
+        square.style.top = "0px";
+        square.style.left = "0px";
+        square.style.width = "0px";
+        square.style.height = "0px";
+        square.style.zIndex = "2";
+        square.innerHTML = "";
+    }
 });
 
 var squared = document.querySelector('.squared');
 var circled = document.querySelector('.circled');
+var texted = document.querySelector('.texted');
 var lined = document.querySelector('.lined');
-console.log(circled);
 
 squared.addEventListener('click', () => {
     square.className = "square";
     square.style.background = "none";
+    iftext = false;
+    square.innerHTML = " ";
 });
 circled.addEventListener('click', () => {
     square.className = "circle";
     square.style.background = "none";
+    iftext = false;
+    square.innerHTML = " ";
 });
 lined.addEventListener('click', () => {
     square.className = "line";
     square.style.background = "black";
+    iftext = false;
+    square.innerHTML = " ";
+});
+texted.addEventListener('click', () => {
+    square.className = "square";
+    square.style.background = "none";
+    iftext = true;
+    square.innerHTML = " ";
 });
 
 document.addEventListener('keypress', (e) => {
     if(e.key === 'z'){
         var theRemovedElement = blocksArray.pop();
         mainBlock1.removeChild(theRemovedElement);
+    }
+});
+
+document.addEventListener('keypress', (e) => {
+    if(iftext == true && e.key === 'Enter'){
+        iftext = false;
+        var mainBlock1 = document.querySelector('.main-block-1');
+        square.style.zIndex = "1";
+        var squarecopy = square.cloneNode(true);
+        squarecopy.style.border = "none";
+        mainBlock1.append(squarecopy);
+        blocksArray.push(squarecopy);
+        console.log(blocksArray);
+        ispressed = false;
+        square.style.display = "none";
+        square.style.top = "0px";
+        square.style.left = "0px";
+        square.style.width = "0px";
+        square.style.height = "0px";
+        square.style.zIndex = "2";
+        square.innerHTML = " ";
+    }
+});
+
+document.addEventListener('click', () => {
+    if(iftext == true){
+        square.style.display = "block";
+        document.addEventListener('keypress', (e) => {
+            square.innerHTML += e.key;
+        });
     }
 });

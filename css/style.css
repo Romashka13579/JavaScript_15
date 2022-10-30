@@ -40,7 +40,7 @@ body{
 
 .main-part{
     display: grid;
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr 160px;
 }
 
 .main-block-1{
@@ -52,7 +52,7 @@ body{
 .main-block-2{
     margin: 30px;
     display: grid;
-    grid-template-rows: repeat(3, 140px);
+    grid-template-rows: repeat(4, 100px);
     gap: 30px;
 }
 
@@ -85,14 +85,21 @@ body{
 
 .block-2-1{
     background: black;
-    height: 140px;
+    height: 100px;
     padding: 2px 2px 2px 2px;
+}
+.block-2-2{
+    font-size: 36px;
+    font-family: cursive;
+    color: black;
+    text-align: center;
+    margin: auto;
 }
 .circled{
     border-radius: 50%;
     border: 2px solid black;
 }
-.lined{clip-path: polygon(0 1%, 1% 0, 100% 99%, 99% 100%);}
+.lined{clip-path: polygon(0 1px, 1px 0, 100% calc(100% - 1px), calc(100% - 1px) 100%);}
 
 .header-sizes{
     display: grid;
