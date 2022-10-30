@@ -115,6 +115,8 @@ var circled = document.querySelector('.circled');
 var texted = document.querySelector('.texted');
 var lined = document.querySelector('.lined');
 
+var textblock = false;
+
 squared.addEventListener('click', () => {
     square.className = "square";
     square.style.background = "none";
@@ -137,19 +139,19 @@ texted.addEventListener('click', () => {
     square.className = "square";
     square.style.background = "none";
     iftext = true;
+    textblock = false;
     square.innerHTML = " ";
 });
 
 document.addEventListener('keypress', (e) => {
-    if(e.key === 'z'){
+    if(e.key === 'z' && iftext == false){
         var theRemovedElement = blocksArray.pop();
         mainBlock1.removeChild(theRemovedElement);
     }
 });
 
 document.addEventListener('keypress', (e) => {
-    if(iftext == true && e.key === 'Enter'){
-        iftext = false;
+    if(iftext == true && e.key === 'Enter' && textblock == false){
         var mainBlock1 = document.querySelector('.main-block-1');
         square.style.zIndex = "1";
         var squarecopy = square.cloneNode(true);
@@ -158,6 +160,7 @@ document.addEventListener('keypress', (e) => {
         blocksArray.push(squarecopy);
         console.log(blocksArray);
         ispressed = false;
+        textblock = true;
         square.style.display = "none";
         square.style.top = "0px";
         square.style.left = "0px";
@@ -168,9 +171,14 @@ document.addEventListener('keypress', (e) => {
     }
 });
 
-document.addEventListener('click', () => {
+mainBlock1.addEventListener('click', (e) => {
     if(iftext == true){
         square.style.display = "block";
+        x1 = e.clientX;
+        y1 = e.clientY;
+        textblock = false;
+        square.style.top = "" + (y1) + "px";
+        square.style.left = "" + (x1) + "px";
         document.addEventListener('keypress', (e) => {
             square.innerHTML += e.key;
         });
