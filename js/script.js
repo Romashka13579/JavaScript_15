@@ -17,6 +17,7 @@ colors.forEach(color => {
         }
         else{
             square.style.borderColor = color.style.background;
+            square.style.color = color.style.background;
         }
     });
 });
@@ -29,6 +30,7 @@ for (let k = 0; k < sizes.length; k++) {
         size = (k+1)*2;
         console.log(size);
         square.style.borderWidth = ""+size+"px";
+        square.style.fontSize = ""+(size*3)+"px";
     });
 }
 
@@ -179,8 +181,11 @@ mainBlock1.addEventListener('click', (e) => {
         textblock = false;
         square.style.top = "" + (y1) + "px";
         square.style.left = "" + (x1) + "px";
-        document.addEventListener('keypress', (e) => {
-            square.innerHTML += e.key;
-        });
+    }
+});
+
+document.addEventListener('keypress', (e) => {
+    if(textblock == false){
+        square.innerHTML += e.key;
     }
 });
